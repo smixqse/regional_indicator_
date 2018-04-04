@@ -36,24 +36,27 @@
         $("#result").html("");
         let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         let special = {"!": ":exclamation: ", "?": ":question: "};
-        let text = $("#input").val().toLowerCase()
-            .replace("á", "a")
-            .replace("ã", "a")
-            .replace("à", "a")
-            .replace("â", "a")
-            .replace("é", "e")
-            .replace("è", "e")
-            .replace("ê", "e")
-            .replace("í", "i")
-            .replace("ì", "i")
-            .replace("î", "i")
-            .replace("ó", "o")
-            .replace("ò", "o")
-            .replace("õ", "o")
-            .replace("ô", "o")
-            .replace("ú", "u")
-            .replace("ù", "u")
-            .replace("û", "u");
+        let text = $("#input").val().toLowerCase();
+        for (var i = 0; i <= 5; i++) {
+            text = text.replace("á", "a")
+            text = text.replace("ã", "a")
+            text = text.replace("à", "a")
+            text = text.replace("â", "a")
+            text = text.replace("é", "e")
+            text = text.replace("è", "e")
+            text = text.replace("ê", "e")
+            text = text.replace("í", "i")
+            text = text.replace("ì", "i")
+            text = text.replace("î", "i")
+            text = text.replace("ó", "o")
+            text = text.replace("ò", "o")
+            text = text.replace("õ", "o")
+            text = text.replace("ô", "o")
+            text = text.replace("ú", "u")
+            text = text.replace("ù", "u")
+            text = text.replace("û", "u");
+        }
+        console.log(text);
         for (letter in text) {
         let tempLetter = text[letter];
         if (!alphabet.includes(tempLetter) && !Object.keys(special).includes(tempLetter)) $("#result").html($("#result").html() + tempLetter);
