@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>eu to loco</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <p>Input:</p><input type="text" id="input" placeholder="insira texto aqui">
+    <p>Output: </p><p style="color:blue;" id="result">resultado aqui</p>
+    <button id="button">Processar</button> <button id="copy">Copiar</button>
+    <script>
+    function copy(selector) {
+				var text = $(selector).html();
+				var textArea = document.createElement("textarea");
+				textArea.style.position = 'fixed';
+				textArea.style.top = 0;
+				textArea.style.left = 0;
+				textArea.style.width = '2em';
+				textArea.style.height = '2em';
+				textArea.style.padding = 0;
+				textArea.style.border = 'none';
+				textArea.style.outline = 'none';
+				textArea.style.boxShadow = 'none';
+				textArea.style.background = 'transparent';
+				textArea.value = text;
+				document.body.appendChild(textArea);
+				textArea.select();
+				document.execCommand('copy');
+				document.body.removeChild(textArea);
+			}
+
+    $("#button").click(function(){
+        $("#result").html("");
+        let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        let text = $("#input").val().toLowerCase();
+        for (letter in text) {
+        let tempLetter = text[letter];
+        if (!alphabet.includes(tempLetter)) $("#result").html($("#result").html() + tempLetter);
+        if (!alphabet.includes(tempLetter)) continue;
+        tempLetter = tempLetter.replace(text[letter], ":regional_indicator_" + text[letter] + ": ");
+        $("#result").html($("#result").html() + tempLetter);
+        }
+    });
+    $("#copy").click(function(){
+        copy("#result");
+    })
+    </script>
+</body>
+</html>
