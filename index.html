@@ -35,14 +35,35 @@
     $("#button").click(function(){
         $("#result").html("");
         let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        let text = $("#input").val().toLowerCase();
+        let special = {"!": ":exclamation: ", "?": ":question: "};
+        let text = $("#input").val().toLowerCase()
+            .replace("á", "a")
+            .replace("ã", "a")
+            .replace("à", "a")
+            .replace("â", "a")
+            .replace("é", "e")
+            .replace("è", "e")
+            .replace("ê", "e")
+            .replace("í", "i")
+            .replace("ì", "i")
+            .replace("î", "i")
+            .replace("ó", "o")
+            .replace("ò", "o")
+            .replace("õ", "o")
+            .replace("ô", "o")
+            .replace("ú", "u")
+            .replace("ù", "u")
+            .replace("û", "u");
         for (letter in text) {
         let tempLetter = text[letter];
-        if (!alphabet.includes(tempLetter)) $("#result").html($("#result").html() + tempLetter);
-        if (!alphabet.includes(tempLetter)) continue;
+        if (!alphabet.includes(tempLetter) && !Object.keys(special).includes(tempLetter)) $("#result").html($("#result").html() + tempLetter);
+        if (!alphabet.includes(tempLetter) && !Object.keys(special).includes(tempLetter)) continue;
+        if (Object.keys(special).includes(tempLetter)) tempLetter = special[tempLetter];
+        if (Object.keys(special).includes(tempLetter)) continue;
         tempLetter = tempLetter.replace(text[letter], ":regional_indicator_" + text[letter] + ": ");
         $("#result").html($("#result").html() + tempLetter);
         }
+
     });
     $("#copy").click(function(){
         copy("#result");
